@@ -1,0 +1,136 @@
+﻿@page "/edit-location/{Id}"
+@layout MainLayout
+@inherits RbsSampleWebApp.Pages.EditLocationComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using RbsSampleWebApp.Models.RbsSampleDb
+<PageTitle>Edit Location</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Edit Location">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@location" TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" Visible="@(location != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Id" style="width: 100%" Text="Id">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenLabel style="width: 100%" Text="@($"{(location.Id)}")">
+                </RadzenLabel>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Key" style="width: 100%" Text="Key">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(location.Key)" Name="Key">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Key" style="position: absolute" Text="Key is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="LanguageId" style="width: 100%" Text="Language">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Data="@getLanguagesForLanguageIdResult" Placeholder="Choose Language" ShowSearch="false" style="display: block; width: 100%" TextProperty="Tag" @bind-Value="@(location.LanguageId)" ValueProperty="Id" Name="LanguageId">
+                </RadzenDropDownDataGrid>
+                <RadzenRequiredValidator Component="LanguageId" style="position: absolute" Text="LanguageId is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Information" style="width: 100%" Text="Information">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox style="width: 100%" @bind-Value="@(location.Information)" Name="Information">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Exist" style="width: 100%" Text="Exist">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenCheckBox @bind-Value="@(location.Exist)" Name="Exist">
+                </RadzenCheckBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="CreatedOn" style="width: 100%" Text="Created On">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@(location.CreatedOn)" Name="CreatedOn">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="CreatedOn" style="position: absolute" Text="CreatedOn is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="CreatedBy" style="width: 100%" Text="Created By">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox style="width: 100%" @bind-Value="@(location.CreatedBy)" Name="CreatedBy">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="LastModifiedOn" style="width: 100%" Text="Last Modified On">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="dd/MM/yyyy" style="width: 100%" @bind-Value="@(location.LastModifiedOn)" Name="LastModifiedOn">
+                </RadzenDatePicker>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="LastModifiedBy" style="width: 100%" Text="Last Modified By">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox style="width: 100%" @bind-Value="@(location.LastModifiedBy)" Name="LastModifiedBy">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="IsDeleted" style="width: 100%" Text="Is Deleted">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenCheckBox @bind-Value="@(location.IsDeleted)" Name="IsDeleted">
+                </RadzenCheckBox>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

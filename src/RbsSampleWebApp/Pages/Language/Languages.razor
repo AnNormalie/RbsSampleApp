@@ -1,0 +1,45 @@
+﻿@page "/"
+@page "/languages"
+@layout MainLayout
+@inherits RbsSampleWebApp.Pages.LanguagesComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using RbsSampleWebApp.Models.RbsSampleDb
+<PageTitle>Languages</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Languages">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenSplitButton Icon="get_app" style="margin-bottom: 10px; margin-left: 10px" Text="Export" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="Excel" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="CSV" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getLanguagesResult" FilterMode="Radzen.FilterMode.Advanced" TItem="RbsSampleWebApp.Models.RbsSampleDb.Language" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Language" Property="Id" Title="Id">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Language" Property="Tag" Title="Tag">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Language" Property="EnglishName" Title="English Name">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Language" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+              <Template Context="rbsSampleWebAppModelsRbsSampleDbLanguage">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, rbsSampleWebAppModelsRbsSampleDbLanguage))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

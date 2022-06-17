@@ -1,0 +1,61 @@
+﻿@page "/locations"
+@layout MainLayout
+@inherits RbsSampleWebApp.Pages.LocationsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using RbsSampleWebApp.Models.RbsSampleDb
+<PageTitle>Locations</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Locations">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenSplitButton Icon="get_app" style="margin-bottom: 10px; margin-left: 10px" Text="Export" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="Excel" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="CSV" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getLocationsResult" FilterMode="Radzen.FilterMode.Advanced" TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" Property="Id" Title="Id">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" Property="Key" Title="Key">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" FilterProperty="Language.Tag" GroupProperty="Language.Tag" Property="LanguageId" SortProperty="Language.Tag" Title="Language">
+              <Template Context="data">
+              @(data.Language?.Tag)
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" Property="Information" Title="Information">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" Property="Exist" Title="Exist">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" FormatString="{0:dd/MM/yyyy}" Property="CreatedOn" Title="Created On">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" Property="CreatedBy" Title="Created By">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" FormatString="{0:dd/MM/yyyy}" Property="LastModifiedOn" Title="Last Modified On">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" Property="LastModifiedBy" Title="Last Modified By">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" Property="IsDeleted" Title="Is Deleted">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="RbsSampleWebApp.Models.RbsSampleDb.Location" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+              <Template Context="rbsSampleWebAppModelsRbsSampleDbLocation">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, rbsSampleWebAppModelsRbsSampleDbLocation))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

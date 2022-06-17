@@ -1,0 +1,50 @@
+@page "/languages-api"
+@layout MainLayout
+@inherits RbsSampleWebApp.Pages.LanguagesApiComponent
+
+@using Radzen
+@using Radzen.Blazor
+
+<PageTitle>Languages Api</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Languages Api">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+
+        <RadzenDataGrid @ref="grid0" 
+            AllowColumnResize="true" AllowFiltering="true" AllowPaging="true" AllowSorting="true" 
+            Data="@getLanguagesResult" TItem="RBSSample.Shared.Dtos.Language.LanguageDto" LoadData="@Grid0LoadData" IsLoading=@isLoading
+            Count="@getLanguagesCount" PageSize="4" PagerAlwaysVisible="true" ShowPagingSummary="true" RowSelect="@Grid0RowSelect" 
+            FilterMode="Radzen.FilterMode.Advanced">
+          <Columns>
+            <RadzenDataGridColumn TItem="RBSSample.Shared.Dtos.Language.LanguageDto" Property="Id" Title="Id" 
+                FilterProperty="Id"/>
+           
+            <RadzenDataGridColumn TItem="RBSSample.Shared.Dtos.Language.LanguageDto" Property="Tag" Title="Tag" 
+                FilterProperty="FactoryId"/>
+
+            <RadzenDataGridColumn TItem="RBSSample.Shared.Dtos.Language.LanguageDto" Property="EnglishName" Title="EnglishName" 
+                FilterProperty="Description"/>
+
+            <RadzenDataGridColumn TItem="RBSSample.Shared.Dtos.Language.LanguageDto" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
+              <Template Context="ctxLanguageDto">
+                <RadzenButton ButtonStyle="ButtonStyle.Secondary" style="margin-right: 5px"
+                    Icon="edit" Size="ButtonSize.Small" Click="@((args) =>GridEditButtonClick(args, ctxLanguageDto))" @onclick:stopPropagation="true">
+                </RadzenButton>
+
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" style="margin-left: 5px" 
+                    Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, ctxLanguageDto))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+            
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

@@ -1,0 +1,56 @@
+﻿@inherits RbsSampleWebApp.Layouts.MainLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using RbsSampleWebApp.Models.RbsSampleDb
+@using RbsSampleWebApp.Pages
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenLayout>
+  <ChildContent>
+    <RadzenHeader>
+      <ChildContent>
+        <div class="row justify-content-start align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <RadzenSidebarToggle Click="@SidebarToggle0Click">
+            </RadzenSidebarToggle>
+            <RadzenLabel Text="RbsSampleWebApp">
+            </RadzenLabel>
+          </div>
+          <div class="col-6 text-right">
+          </div>
+        </div>
+      </ChildContent>
+    </RadzenHeader>
+    <RadzenBody @ref="body0">
+      <ChildContent>
+        <RadzenContentContainer Name="main">
+        @Body
+        </RadzenContentContainer>
+      </ChildContent>
+    </RadzenBody>
+    <RadzenSidebar @ref="sidebar0">
+      <ChildContent>
+        <RadzenPanelMenu style="height: 100%">
+          <ChildContent>
+            <RadzenPanelMenuItem Text="Languages SQL" Path="languages">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Locations SQL" Path="locations">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Languages Api" Path="languages-api">
+            </RadzenPanelMenuItem>
+          </ChildContent>
+        </RadzenPanelMenu>
+      </ChildContent>
+    </RadzenSidebar>
+    <RadzenFooter>
+      <ChildContent>
+        <RadzenLabel Text="RbsSampleWebApp, Copyright Ⓒ 2022">
+        </RadzenLabel>
+      </ChildContent>
+    </RadzenFooter>
+  </ChildContent>
+</RadzenLayout>

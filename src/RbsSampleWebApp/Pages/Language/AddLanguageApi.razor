@@ -1,0 +1,55 @@
+﻿@page "/add-language-api"
+@layout MainLayout
+@inherits RbsSampleWebApp.Pages.AddLanguageApiComponent
+
+@using Radzen
+@using Radzen.Blazor
+
+<PageTitle>Add Language Api</PageTitle>
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Add Language Api">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@languageforcreationdto" Visible="@(languageforcreationdto != null)" TItem="RBSSample.Shared.Dtos.Language.LanguageForCreationDto" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="Tag" Component="Tag" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(languageforcreationdto.Tag)" Name="Tag">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Tag" Text="Tag is required" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="EnglishName" Component="EnglishName" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(languageforcreationdto.EnglishName)" Name="EnglishName">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="EnglishName" Text="EnglishName is required" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Save" ButtonStyle="ButtonStyle.Primary">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

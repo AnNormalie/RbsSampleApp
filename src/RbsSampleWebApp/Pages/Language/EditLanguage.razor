@@ -1,0 +1,64 @@
+﻿@page "/edit-language/{Id}"
+@layout MainLayout
+@inherits RbsSampleWebApp.Pages.EditLanguageComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using RbsSampleWebApp.Models.RbsSampleDb
+<PageTitle>Edit Language</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Edit Language">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@language" TItem="RbsSampleWebApp.Models.RbsSampleDb.Language" Visible="@(language != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Id" style="width: 100%" Text="Id">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenLabel style="width: 100%" Text="@($"{(language.Id)}")">
+                </RadzenLabel>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Tag" style="width: 100%" Text="Tag">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="5" style="display: block; width: 100%" @bind-Value="@(language.Tag)" Name="Tag">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Tag" style="position: absolute" Text="Tag is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EnglishName" style="width: 100%" Text="English Name">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(language.EnglishName)" Name="EnglishName">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="EnglishName" style="position: absolute" Text="EnglishName is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
