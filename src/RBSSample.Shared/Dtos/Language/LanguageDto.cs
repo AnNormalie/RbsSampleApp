@@ -8,5 +8,5 @@ public class LanguageDto
     public Guid Id { get; set; }
     public string Tag { get; set; } = string.Empty;
     public string EnglishName { get; set; } = string.Empty;
-    public ICollection<LocationDto>? Locations { get; set; }
+    public virtual ICollection<LocationDto>? Locations { get; set; }
 }

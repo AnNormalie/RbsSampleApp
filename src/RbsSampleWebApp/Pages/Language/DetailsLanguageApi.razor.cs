@@ -79,24 +79,24 @@ public partial class DetailsLanguageApiComponent : ComponentBase
         }
     }
 
-    //ICollection<RBSSample.Shared.Dtos.Location.LocationDto> _locationsForLanguageDto;
-    //protected ICollection<RBSSample.Shared.Dtos.Location.LocationDto> locationsForLanguageDto
-    //{
-    //    get
-    //    {
-    //        return _locationsForLanguageDto;
-    //    }
-    //    set
-    //    {
-    //        if (!object.Equals(_locationsForLanguageDto, value))
-    //        {
-    //            var args = new PropertyChangedEventArgs() { Name = "locationsForLanguageDto", NewValue = value, OldValue = _locationsForLanguageDto };
-    //            _locationsForLanguageDto = value;
-    //            OnPropertyChanged(args);
-    //            Reload();
-    //        }
-    //    }
-    //}
+    ICollection<RBSSample.Shared.Dtos.Location.LocationDto> _locationsForLanguageDto;
+    protected ICollection<RBSSample.Shared.Dtos.Location.LocationDto> locationsForLanguageDto
+    {
+        get
+        {
+            return _locationsForLanguageDto;
+        }
+        set
+        {
+            if (!object.Equals(_locationsForLanguageDto, value))
+            {
+                var args = new PropertyChangedEventArgs() { Name = "locationsForLanguageDto", NewValue = value, OldValue = _locationsForLanguageDto };
+                _locationsForLanguageDto = value;
+                OnPropertyChanged(args);
+                Reload();
+            }
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -119,13 +119,8 @@ public partial class DetailsLanguageApiComponent : ComponentBase
 
         try
         {
-            //var includes = new string[]
-            //{
-            //    "Locations"
-            //};
+            getLanguageByIdDto = await RbsSampleApiService.GetLanguageById((Guid)Id);
 
-            var result = await RbsSampleApiService.GetLanguageById(Convert.ChangeType(Id, Type.GetTypeCode(typeof(int)))/*, includes*/);
-            getLanguageByIdDto = result;
 
             //locationsForLanguageDto = getLanguageByIdDto.Locations;
         }

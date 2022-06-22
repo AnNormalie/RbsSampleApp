@@ -57,7 +57,7 @@ public class RbsSampleApiService : IRbsSampleApiService
 
     }
 
-    public async Task<bool> DeleteLanguage(int id)
+    public async Task<bool> DeleteLanguage(Guid id)
     {
         var uri = new Uri(baseUri, $"api/Language/{id}");
 
@@ -69,7 +69,7 @@ public class RbsSampleApiService : IRbsSampleApiService
 
         return true;
     }
-    public async Task<bool> DeleteLocation(int id)
+    public async Task<bool> DeleteLocation(Guid id)
     {
         var uri = new Uri(baseUri, $"api/Locations/{id}");
 
@@ -142,7 +142,7 @@ public class RbsSampleApiService : IRbsSampleApiService
         return JsonSerializer.Deserialize<PagedLocationResultDto>(content, _options);
     }
 
-    public async Task<LanguageDto> GetLanguageById(int id, string[] includes = null)
+    public async Task<LanguageDto> GetLanguageById(Guid id, string[] includes = null)
     {
         var uri = new Uri(baseUri, $"api/Languages/{id}");
 
@@ -165,7 +165,7 @@ public class RbsSampleApiService : IRbsSampleApiService
 
         return JsonSerializer.Deserialize<LanguageDto>(content, _options);
     }
-    public async Task<LocationDto> GetLocationById(int id, string[] includes = null)
+    public async Task<LocationDto> GetLocationById(Guid id, string[] includes = null)
     {
         var uri = new Uri(baseUri, $"api/Locations/{id}");
 
@@ -189,7 +189,7 @@ public class RbsSampleApiService : IRbsSampleApiService
         return JsonSerializer.Deserialize<LocationDto>(content, _options);
     }
 
-    public async Task<bool> UpdateLanguage(int id, LanguageForUpdateDto body)
+    public async Task<bool> UpdateLanguage(Guid id, LanguageForUpdateDto body)
     {
         var uri = new Uri(baseUri, $"api/Languages/{id}");
 
@@ -203,7 +203,7 @@ public class RbsSampleApiService : IRbsSampleApiService
 
         return true;
     }
-    public async Task<bool> UpdateLocation(int id, LocationForUpdateDto body)
+    public async Task<bool> UpdateLocation(Guid id, LocationForUpdateDto body)
     {
         var uri = new Uri(baseUri, $"api/Locations/{id}");
 
