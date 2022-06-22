@@ -1,0 +1,55 @@
+@page "/details-language-api/{Id}"
+@layout MainLayout
+@inherits RbsSampleWebApp.Pages.DetailsLanguageApiComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Microsoft.AspNetCore.Authorization
+
+@attribute [Authorize(Roles = "Admin")]
+
+<PageTitle>Details Language Api</PageTitle>
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Details Language Api">
+    </RadzenHeading>
+    <div class="row">
+        <div class="col-md-12" style="">
+            <RadzenButton Text="Back" Icon="undo" ButtonStyle="Radzen.ButtonStyle.Info" Style="" Click="@ButtonBackClick"></RadzenButton>          
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+          <RadzenTabs>
+              <Tabs>
+                  <RadzenTabsItem Text="Details">
+                      <div class="row">
+                        <div class="col-md-12">
+                            <RadzenCard>
+                                <RadzenTextBox Style="width: 100%" Value="Hier koennte Ihre Werbung stehen!"></RadzenTextBox>
+                            </RadzenCard>                       
+                        </div>
+                      </div>  
+                  </RadzenTabsItem>
+                  <RadzenTabsItem Text="Locations">
+                      <div class="row">
+                        <div class="col-md-12">
+                            <RadzenDataGrid @ref="gridLocations" AllowColumnResize="true" AllowFiltering="true" AllowPaging="true" AllowSorting="true" 
+                                Data="@locationsForLanguageDto" FilterMode="Radzen.FilterMode.Advanced" TItem="RBSSample.Shared.Dtos.Location.LocationDto" 
+                                PageSize="5" PagerAlwaysVisible="true" ShowPagingSummary="true">
+                                <Columns>
+                                    <RadzenDataGridColumn TItem="RBSSample.Shared.Dtos.Location.LocationDto" Property="Key" Title="Key"></RadzenDataGridColumn>
+                                    <RadzenDataGridColumn TItem="RBSSample.Shared.Dtos.Location.LocationDto" Property="Information" Title="Information"></RadzenDataGridColumn> 
+                                    <RadzenDataGridColumn TItem="RBSSample.Shared.Dtos.Location.LocationDto" Property="Exist" Title="Exist"></RadzenDataGridColumn> 
+                                </Columns>
+                            </RadzenDataGrid>
+                        </div>
+                      </div>   
+                  </RadzenTabsItem>
+              </Tabs>
+          </RadzenTabs>       
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
